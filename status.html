@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Status - Fix My City</title>
+  <title>Support - Fix My City</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -18,7 +18,6 @@
       z-index: 1000 !important;
       background-color: #dbeafe; /* Fallback for bg-blue-100 */
       opacity: 1;
-      transform: none !important; /* Prevent sliding */
       transition: opacity 0.3s ease-out; /* CSS fallback for AOS */
     }
     nav.hidden {
@@ -41,14 +40,11 @@
       font-weight: 600;
       color: #1e40af; /* blue-800 */
     }
-    nav ul li {
-      flex-shrink: 0; /* Prevent text shifting */
-    }
   </style>
 </head>
-<body class="bg-blue-50 text-gray-800 font-sans">
+<body class="bg-blue-50 text-gray-800">
 <!-- Navbar -->
-<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50" data-aos="fade">
+<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50" data-aos="fade-down">
   <div class="flex items-center space-x-3">
     <img src="logo.jpg" alt="Fix My City Logo" class="h-10 w-10 scale-125 object-contain transition-transform hover:scale-110" loading="eager" onerror="this.classList.add('logo-fallback'); this.src=''; this.textContent='FMC';">
     <h1 class="text-2xl font-semibold tracking-tight">Fix My City</h1>
@@ -57,57 +53,60 @@
     <li><a href="home.html" class="hover:text-blue-700 transition">Home</a></li>
     <li><a href="home.html#report" class="hover:text-blue-700 transition">Report</a></li>
     <li><a href="home.html#about" class="hover:text-blue-700 transition">Creators</a></li>
-    <li><a href="support.html" class="hover:text-blue-700 transition">Support</a></li>
-    <li><a href="status.html" class="hover:text-blue-700 transition nav-active">Status</a></li>
+    <li><a href="support.html" class="hover:text-blue-700 transition nav-active">Support</a></li>
+    <li><a href="status.html" class="hover:text-blue-700 transition">Status</a></li>
     <li><a href="faqs.html" class="hover:text-blue-700 transition">FAQs</a></li>
   </ul>
 </nav>
 
-<!-- Status Section -->
-<section id="status" class="bg-gradient-to-b from-blue-100 to-blue-200 py-16 px-6" data-aos="fade-up">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-4xl font-extrabold mb-4 text-gray-900" data-aos="fade-up">Track Your Reported Issues</h2>
-    <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto" data-aos="fade-up">
-      Stay updated with the progress of your reported issues. Statuses refresh automatically every 30 seconds.
-    </p>
-    <button id="refreshButton" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-500 transition font-semibold shadow-md" data-aos="fade-up">
-      Refresh Now
-    </button>
-    <div id="reportsList" class="grid md:grid-cols-2 gap-8 mt-12" data-aos="fade-up">
-      <!-- Reports will be dynamically loaded here -->
-    </div>
-  </div>
-</section>
+<!-- Support Section -->
+<section class="max-w-3xl mx-auto py-16 px-6" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-gray-800 text-center" data-aos="fade-up">Support</h2>
+  <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center" data-aos="fade-up">
+    Urban citizens face persistent challenges such as potholes, overflowing garbage bins, malfunctioning streetlights, and water leakages.
+    Currently, there is no centralized and user-friendly platform to report, track, and resolve these civic issues in real time.
+    This results in delays, lack of transparency, and poor communication between citizens and authorities, ultimately reducing the overall quality of urban life.
+  </p>
 
-<!-- Status Legend -->
-<section class="bg-white py-16 px-6" data-aos="fade-up">
-  <h3 class="text-3xl font-bold text-center mb-12 text-gray-900" data-aos="fade-up">Status Legend</h3>
-  <div class="grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto" data-aos="fade-up">
-    <div class="bg-yellow-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
-      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-yellow-400"></div>
-      <h4 class="font-bold text-yellow-700 text-lg">Delivered</h4>
-      <p class="text-sm text-gray-600">Your report has been received by our system.</p>
+  <form action="http://localhost:3000/submit-issue" method="POST" class="bg-white p-8 rounded-lg shadow-lg space-y-5" data-aos="fade-up">
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Your Name</label>
+      <input type="text" name="name" placeholder="Enter your name"
+             class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
     </div>
-    <div class="bg-blue-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
-      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-blue-500"></div>
-      <h4 class="font-bold text-blue-700 text-lg">Message Sent</h4>
-      <p class="text-sm text-gray-600">Forwarded to the relevant authorities.</p>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Email</label>
+      <input type="email" name="email" placeholder="Enter your email"
+             class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
     </div>
-    <div class="bg-purple-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
-      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-purple-500"></div>
-      <h4 class="font-bold text-purple-700 text-lg">Authorities Accepted</h4>
-      <p class="text-sm text-gray-600">Authorities acknowledged the issue.</p>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Type of Issue</label>
+      <select name="issue" class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
+        <option>Pothole</option>
+        <option>Garbage Overflow</option>
+        <option>Broken Streetlight</option>
+        <option>Poor drainage/flooding</option>
+        <option>Delay in approvals or documents</option>
+        <option>Mosquito breeding due to stagnant water</option>
+        <option>Broken Public Toilets</option>
+        <option>Damaged Roads</option>
+        <option>Other</option>
+      </select>
     </div>
-    <div class="bg-green-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
-      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-green-500"></div>
-      <h4 class="font-bold text-green-700 text-lg">Problem Solved</h4>
-      <p class="text-sm text-gray-600">The issue has been resolved.</p>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Description</label>
+      <textarea name="description" rows="4" placeholder="Describe your problem"
+                class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg"></textarea>
     </div>
-  </div>
+    <button type="submit"
+            class="bg-blue-600 text-white px-6 py-3 rounded-tl-lg rounded-br-lg font-semibold hover:bg-blue-500 transition transform hover:scale-105 shadow-md w-full">
+      Submit
+    </button>
+  </form>
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-gray-300 mt-12" data-aos="fade-up">
+<footer class="bg-gray-900 text-gray-300 mt-16" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
     <div>
       <h4 class="text-lg font-bold text-white mb-3">FixMyCity</h4>
@@ -122,7 +121,6 @@
         <li><a href="home.html#about" class="hover:text-blue-400">About</a></li>
         <li><a href="support.html" class="hover:text-blue-400">Support</a></li>
         <li><a href="faqs.html" class="hover:text-blue-400">FAQs</a></li>
-        <li><a href="status.html" class="hover:text-blue-400">Status</a></li>
       </ul>
     </div>
     <div>
@@ -138,11 +136,12 @@
         </button>
       </form>
     </div>
+    <!-- CTA -->
     <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
       <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
       <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
-      <a href="#"
-         class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+      <a href="https://github.com/PravallikaSurabathula2006/Fix-My-City" target="_blank"
+        class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
         Contribute on GitHub
       </a>
     </div>
@@ -152,49 +151,90 @@
   </div>
 </footer>
 
-<!-- JavaScript for Real-Time Updates and AOS -->
-<script>
-  // Sample Reports
-  const sampleReports = [
-    { id: 1, description: "Pothole near Central Park (Postal: 12345)", date: "August 20, 2025", status: "Delivered" },
-    { id: 2, description: "Broken Streetlight at Oak Street (Postal: 67890)", date: "August 19, 2025", status: "Message Sent" },
-    { id: 3, description: "Garbage Bin — Market Road (Postal: 11223)", date: "August 18, 2025", status: "Authorities Accepted" },
-    { id: 4, description: "Water leakage near School Lane (Postal: 44556)", date: "August 17, 2025", status: "Problem Solved" }
-  ];
+<!-- Chatbot Widget -->
+<div id="chatbot" class="fixed bottom-16 right-5 w-80 max-h-[500px] bg-white shadow-2xl rounded-xl flex flex-col transition-all duration-300 hidden z-50">
+  <div class="bg-blue-600 text-white p-4 rounded-t-xl flex justify-between items-center">
+    <span class="font-semibold text-lg">FixMyCity AI Support</span>
+    <button onclick="toggleChatbot()" class="text-white hover:text-gray-200 focus:outline-none">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div id="chatMessages" class="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3 text-sm">
+    <div class="flex justify-start">
+      <div class="bg-blue-100 text-gray-800 p-3 rounded-lg max-w-[80%]">
+        Hi! I'm here to help with reporting civic issues or any questions about FixMyCity. What's on your mind?
+      </div>
+    </div>
+  </div>
+  <div id="typingIndicator" class="hidden p-3 text-gray-500 text-sm">
+    <span>AI is typing...</span>
+  </div>
+  <div class="p-3 border-t border-gray-200 bg-white flex gap-2">
+    <input type="text" id="userMessage" placeholder="Ask about reporting issues..." 
+           class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+           onkeypress="if(event.key === 'Enter') sendMessage()">
+    <button onclick="sendMessage()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition focus:outline-none">Send</button>
+  </div>
+</div>
+<button id="chatToggle" onclick="toggleChatbot()" class="fixed bottom-5 right-5 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-500 transition z-50">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+  </svg>
+</button>
 
-  function renderReports(reports) {
-    const reportsList = document.getElementById("reportsList");
-    reportsList.innerHTML = "";
-    reports.forEach(report => {
-      let statusColor = "";
-      switch (report.status) {
-        case "Delivered": statusColor = "bg-yellow-200 text-yellow-800"; break;
-        case "Message Sent": statusColor = "bg-blue-200 text-blue-800"; break;
-        case "Authorities Accepted": statusColor = "bg-purple-200 text-purple-800"; break;
-        case "Problem Solved": statusColor = "bg-green-200 text-green-800"; break;
-      }
-      const card = `
-        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">${report.description}</h3>
-          <p class="text-sm text-gray-500 mb-4">Reported on: ${report.date}</p>
-          <span class="${statusColor} px-4 py-2 rounded-full font-medium">${report.status}</span>
-        </div>
-      `;
-      reportsList.innerHTML += card;
-    });
+<script>
+  // Toggle Chatbot
+  function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    const toggleBtn = document.getElementById('chatToggle');
+    chatbot.classList.toggle('hidden');
+    toggleBtn.classList.toggle('hidden');
   }
 
-  function fetchUpdates() {
-    sampleReports.forEach(report => {
-      if (Math.random() > 0.7) {
-        switch (report.status) {
-          case "Delivered": report.status = "Message Sent"; break;
-          case "Message Sent": report.status = "Authorities Accepted"; break;
-          case "Authorities Accepted": report.status = "Problem Solved"; break;
-        }
-      }
-    });
-    renderReports(sampleReports);
+  // Chatbot Send Message
+  async function sendMessage() {
+    const input = document.getElementById('userMessage');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const chat = document.getElementById('chatMessages');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    chat.innerHTML += `
+      <div class="flex justify-end">
+        <div class="bg-blue-600 text-white p-3 rounded-lg max-w-[80%]">${msg}</div>
+      </div>
+    `;
+    chat.scrollTop = chat.scrollHeight;
+    input.value = '';
+
+    typingIndicator.classList.remove('hidden');
+
+    try {
+      const response = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await response.json();
+      typingIndicator.classList.add('hidden');
+      chat.innerHTML += `
+        <div class="flex justify-start">
+          <div class="bg-blue-100 text-gray-800 p-3 rounded-lg max-w-[80%]">${data.reply}</div>
+        </div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+    } catch (error) {
+      typingIndicator.classList.add('hidden');
+      chat.innerHTML += `
+        <div class="flex justify-start">
+          <div class="bg-red-100 text-red-600 p-3 rounded-lg max-w-[80%]">Error connecting to chatbot</div>
+        </div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+    }
   }
 
   // Feedback Form Submission
@@ -221,7 +261,7 @@
     }
   });
 
-  // Initialize AOS and Render Reports
+  // Initialize AOS with error handling
   window.addEventListener("load", () => {
     console.log("Page loaded, checking AOS...");
     if (typeof AOS !== "undefined") {
@@ -245,12 +285,7 @@
       });
     }
     console.log("Navbar check: ", document.querySelector("nav") ? "Visible" : "Not found");
-    console.log("Navbar position: ", document.querySelector("nav")?.getBoundingClientRect().top);
-    renderReports(sampleReports);
   });
-
-  document.getElementById("refreshButton").addEventListener("click", fetchUpdates);
-  setInterval(fetchUpdates, 30000);
 </script>
 </body>
 </html>
