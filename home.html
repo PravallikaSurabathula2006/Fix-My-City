@@ -200,7 +200,6 @@
   </div>
 </section>
 
-
   <!-- Footer --><!-- Footer -->
 <footer class="bg-gray-900 text-gray-300" data-aos="fade-up">
     <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
@@ -236,16 +235,22 @@
           Send Message
         </button>
       </form>
+<!-- Toast container -->
+<div id="toast" 
+     class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 
+            bg-green-600 text-white px-4 py-2 rounded shadow-lg">
+  Message submitted!
+</div>
 
-      <!-- CTA -->
-      <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
-        <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
-        <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
-        <a href="#"
-           class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
-          Contribute on GitHub
-        </a>
-      </div>
+    <!-- CTA -->
+    <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
+      <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
+      <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
+      <a href="https://github.com/PravallikaSurabathula2006/Fix-My-City" target="_blank"
+        class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+        Contribute on GitHub
+      </a>
+    </div>
     </div>
 
     <!-- Bottom -->
@@ -320,11 +325,41 @@
 </script>
 <script>
   AOS.init({
-    duration: 600, // Animation duration in ms
-    offset: 80,    // Trigger animations 100px before element enters viewport
-    easing: 'ease-in-out', // Smoother animation curve
-    once: false,    // Allow animations to replay when scrolling back up
-    mirror: true    // Animate elements out when scrolling back up
+    duration: 600, 
+    offset: 80, 
+    easing: 'ease-in-out',
+    once: false,
+    mirror: true
+  });
+  // Show toast helper
+  function showToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.remove("hidden");
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 3000); // hide after 3s
+  }
+
+  // Feedback form handler
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("feedbackEmail").value.trim();
+    const message = document.getElementById("feedbackMessage").value.trim();
+
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+
+    try {
+      // 🔹 Show toast after submission
+      showToast();
+      document.getElementById("feedbackForm").reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending feedback. Please try again later.");
+    }
   });
 </script>
 </body>
