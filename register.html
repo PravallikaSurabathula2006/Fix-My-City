@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .bg-animated {
+      background-size: cover;
+      background-position: center;
+    }
+    .navbar {
+      background-image: url("bg.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .navbar-text {
+      color: black;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    @media (prefers-contrast: high) {
+      .navbar-text {
+        color: black;
+        text-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-animated" 
+      style="background-image: url('bg.jpg');">
+
+  <!-- Navbar -->
+  <nav class="navbar text-black px-6 py- flex justify-between items-center shadow-md sticky top-0 z-75">
+    <div class="flex items-center space-x-5">
+      <img src="logo.jpg" alt="SmartCity Logo" 
+           class="h-10 w-10 scale-125 object-contain transition-transform duration-300 hover:scale-110" 
+           onerror="this.src='https://via.placeholder.com/40';">
+      <h1 class="text-2xl font-semibold tracking-tight navbar-text">Fix My City</h1>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex justify-center items-center flex-1">
+    <div class="glass-card w-full max-w-md p-6 rounded-xl">
+      <form id="registerForm" class="space-y-4">
+        <h2 class="text-2xl font-bold text-black text-center">User Registration</h2>
+
+        <!-- Full Name -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Full Name</label>
+          <input type="text" placeholder="Enter your name" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+        </div>
+
+        <!-- Age -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Age</label>
+          <input type="number" placeholder="Enter your age" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+        </div>
+
+        <!-- City -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">City</label>
+          <input type="text" placeholder="Enter your city" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Phone Number</label>
+          <input type="tel" placeholder="Enter your phone number" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+        </div>
+
+        <!-- Postal Code -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Postal Code</label>
+          <input type="text" placeholder="Enter your postal code" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+        </div>
+
+        <!-- Save & Continue -->
+        <button type="submit" 
+          class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg 
+                 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 outline-none 
+                 transition duration-200 flex items-center justify-center">
+          <span>Save & Continue</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/30 text-center text-sm text-black/80 py-4">
+    © 2025 FixMyCity | Built with 💙 for open collaboration
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // For now, just redirect
+      window.location.href = "home.html";
+    });
+  </script>
+
+</body>
+</html>
