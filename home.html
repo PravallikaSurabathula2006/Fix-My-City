@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index page - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"> </script>
+</head>
+<body class="bg-blue-50 text-gray-800">
+<!-- Navbar -->
+<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50">
+  <div class="flex items-center space-x-3">
+    <img src="logo.jpg" alt="SmartCity Logo" class="h-10 w-10 scale-125 object-contain transition-transform hover:scale-110">
+    <h1 class="text-2xl font-semibold tracking-tight">Fix My City</h1>
+  </div>
+  <ul class="flex space-x-6 text-base font-medium">
+    <li><a href="home.html" class="hover:text-blue-700 transition">Home</a></li>
+    <li><a href="home.html#report" class="hover:text-blue-700 transition">Report</a></li>
+    <li><a href="home.html#about" class="hover:text-blue-700 transition">Creators</a></li>
+    <li><a href="support.html" class="hover:text-blue-700 transition">Support</a></li>
+    <li><a href="status.html" class="hover:text-blue-700 transition">Status</a></li>
+    <li><a href="faqs.html" class="hover:text-blue-700 transition">FAQs</a></li>
+  </ul>
+</nav>
+
+<!-- Hero / Banner Section -->
+<section class="relative bg-cover bg-center h-[100vh] flex items-center justify-center text-center" 
+         style="background-image: url('banner.jpg');" data-aos="fade-in">
+
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative z-10 px-6 flex justify-center">
+      <div class="max-w-2xl text-center">
+        <h2 class="text-5xl font-extrabold mb-6 text-white drop-shadow-lg">
+          Your Problem, Our Solution &#65039;
+        </h2>
+        <p class="text-lg md:text-xl mb-8 text-gray-200 drop-shadow-md leading-relaxed">
+          Living in a city should not mean compromising on safety and comfort.  
+          With our platform, you can instantly report problems like potholes, garbage, streetlights,  
+          and track their resolution in real time. Together, let’s build a cleaner, safer, and smarter city.  
+        </p>
+        <a href="#report" 
+           class="bg-blue-600 text-white px-8 py-3 rounded-tl-lg rounded-br-lg font-semibold 
+                  hover:bg-blue-500 transition transform hover:scale-105 shadow-md">
+          Report Now
+        </a>
+      </div>
+    </div>
+  </section>
+<!-- Reports -->
+<section id="report" class="bg-blue-200 py-10 px-6" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-4 text-gray-800">Report Local Problems</h2> <!-- reduced mb-6 → mb-4 -->
+    <p class="text-lg mb-6 text-gray-700">Potholes, water leaks, garbage dumps, or broken lights</p> <!-- reduced mb-8 → mb-6 -->
+    
+    <div class="flex max-w-md mx-auto mb-3"> <!-- reduced mb-4 → mb-3 -->
+      <input
+        type="text"
+        id="postalInput"
+        placeholder="Enter 6-digit postal code"
+        class="flex-1 bg-gray-50 border border-blue-300 rounded-l-md px-4 py-2 focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg"
+        maxlength="6"
+      />
+      <button
+        id="goButton"
+        class="bg-blue-700 text-white px-6 py-2 rounded-r-md hover:bg-blue-600 transition text-lg font-medium">
+        Go
+      </button>
+    </div>
+    <p id="errorMsg" class="text-red-600 text-sm font-medium hidden"></p>
+  </div>
+</section>
+
+<div class="bg-blue-200 py-10 px-6"> <!-- fixed typo py- -->
+  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6"> <!-- reduced gap-8 → gap-6 -->
+    
+    <!-- How to Report -->
+    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition" data-aos="fade-right">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">How to Report</h3> <!-- reduced mb-5 → mb-4 -->
+      <ul class="space-y-2 text-gray-700 text-lg"> <!-- reduced space-y-3 → space-y-2 -->
+        <li class="flex items-start"><span class="mr-2 text-blue-700 font-bold">1.</span> Enter postal code or street name</li>
+        <li class="flex items-start"><span class="mr-2 text-blue-700 font-bold">2.</span> Pinpoint the issue on a map</li>
+        <li class="flex items-start"><span class="mr-2 text-blue-700 font-bold">3.</span> Add issue details</li>
+        <li class="flex items-start"><span class="mr-2 text-blue-700 font-bold">4.</span> We forward it to authorities</li>
+      </ul>
+    </div>
+
+    <!-- Recent Reports -->
+     <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition" data-aos="fade-left">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Recent Reports</h3>
+      <ul class="space-y-2 text-lg">
+        <li class="hover:bg-blue-100 p-3 rounded transition">
+          <a href="#home" class="text-gray-800 hover:text-blue-700 font-medium">Pothole near Central Park</a>
+          <p class="text-sm text-gray-500 mt-1">03:11 today</p>
+        </li>
+        <li class="hover:bg-blue-100 p-3 rounded transition">
+          <a href="#home" class="text-gray-800 hover:text-blue-700 font-medium">Broken Streetlight at Oak Street</a>
+          <p class="text-sm text-gray-500 mt-1">03:06 today</p>
+        </li>
+        <li class="hover:bg-blue-100 p-3 rounded transition">
+          <a href="#home" class="text-gray-800 hover:text-blue-700 font-medium">Garbage Bin — Market Road</a>
+          <p class="text-sm text-gray-500 mt-1">03:00 today</p>
+        </li>
+        <li class="hover:bg-blue-100 p-3 rounded transition">
+          <a href="#home" class="text-gray-800 hover:text-blue-700 font-medium">Water leakage near School Lane</a>
+          <p class="text-sm text-gray-500 mt-1">02:57 today</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- About Section -->
+ <section id="about" class="max-w-5xl mx-auto py-16 px-6 flex flex-col md:flex-row items-center gap-8" data-aos="zoom-in">
+
+  <!-- Picture -->
+  <div class="md:w-1/3 flex justify-center">
+    <img src="creators.jpg" alt="CodeSpark 2025 Project" class="rounded-xl shadow-lg w-full max-w-xs">
+  </div>
+
+  <!-- Text Content -->
+  <div class="md:w-2/3 text-center md:text-left">
+    <h3 class="text-3xl font-bold mb-4 text-gray-800">Creators of This Project</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      This web platform was built as part of <span class="font-semibold">CodeSpark 2025</span>, aiming to provide a 
+      smart, easy-to-use civic reporting system for urban communities. Citizens can report potholes, garbage, 
+      broken streetlights, and water leakages instantly, ensuring faster resolutions.
+    </p>
+    <p class="text-gray-800 leading-relaxed">
+      The creators of this web page are <span class="font-semibold">Pravallika Surabathula</span> and 
+      <span class="font-semibold">Keerthana Veeravalli</span>. Together, they envisioned a cleaner, safer, and smarter city.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Quick Features --><!-- Quick Features -->
+<section class="bg-blue-50 py-16 px-6" data-aos="fade-up">
+    <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">Why Use SmartCity Connect?</h3>
+    <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div class="bg-blue-200 p-6 rounded-xl shadow hover:shadow-lg">
+        <span class="text-4xl">&#128248;</span>
+        <h4 class="font-bold mt-4">Photo Upload</h4>
+        <p class="text-sm text-gray-600">Attach proof with location in seconds</p>
+      </div>
+      <div class="bg-blue-200 p-6 rounded-xl shadow hover:shadow-lg">
+        <span class="text-4xl">&#128205;</span>
+        <h4 class="font-bold mt-4">Live Location</h4>
+        <p class="text-sm text-gray-600">Pinpoint issue directly on map</p>
+      </div>
+      <div class="bg-blue-200 p-6 rounded-xl shadow hover:shadow-lg">
+        <span class="text-4xl">&#128202;</span>
+        <h4 class="font-bold mt-4">Track Status</h4>
+        <p class="text-sm text-gray-600">Know when your issue is resolved</p>
+      </div>
+      <div class="bg-blue-200 p-6 rounded-xl shadow hover:shadow-lg">
+        <span class="text-4xl">&#129302;</span>
+        <h4 class="font-bold mt-4">AI Categorization</h4>
+        <p class="text-sm text-gray-600">Smart sorting of reported issues</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Collaboration Section -->
+<section class="bg-blue-50 text-black py-16 px-6" data-aos="fade-up">
+
+  <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+    
+    <!-- Developer Card -->
+    <div class="bg-blue-200 p-6 rounded-md flex flex-col justify-between hover:shadow-md transition">
+      <div>
+        <h3 class="text-lg font-semibold mb-3">For Developers</h3>
+        <p class="text-sm text-black/90">Contribute to our open-source project to improve city solutions.</p>
+      </div>
+      <a href="#home" class="mt-4 bg-white text-blue-600 font-medium px-4 py-2 rounded hover:bg-blue-50 transition text-center">Join us</a>
+    </div>
+
+    <!-- Organization Card -->
+    <div class="bg-blue-200 p-6 rounded-md flex flex-col justify-between hover:shadow-md transition">
+      <div>
+        <h3 class="text-lg font-semibold mb-3">For Organizations</h3>
+        <p class="text-sm text-black/90">Partner to integrate tools and solve civic issues.</p>
+      </div>
+      <a href="#home" class="mt-4 bg-white text-blue-600 font-medium px-4 py-2 rounded hover:bg-blue-50 transition text-center">Partner</a>
+    </div>
+
+    <!-- Citizen Card -->
+    <div class="bg-blue-200 p-6 rounded-md flex flex-col justify-between hover:shadow-md transition">
+      <div>
+        <h3 class="text-lg font-semibold mb-3">For Citizens</h3>
+        <p class="text-sm text-black/90">Report and track issues to improve your city.</p>
+      </div>
+      <a href="#home" class="mt-4 bg-white text-blue-600 font-medium px-4 py-2 rounded hover:bg-blue-50 transition text-center">Get involved</a>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Footer --><!-- Footer -->
+<footer class="bg-gray-900 text-gray-300" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+
+      <!-- About -->
+      <div>
+        <h4 class="text-lg font-bold text-white mb-3">FixMyCity</h4>
+        <p class="text-sm leading-relaxed">
+          Open-source platform for mapping and reporting city issues, fostering collaboration between citizens, councils, and developers.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-lg font-bold text-white mb-3">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#home" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#report" class="hover:text-blue-400">Report a Problem</a></li>
+          <li><a href="#about" class="hover:text-blue-400">Creators</a></li>
+          <li><a href="support.html" class="hover:text-blue-400">Support</a></li>
+          <li><a href="faqs.html" class="hover:text-blue-400">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Feedback -->
+      <form id="feedbackForm" class="space-y-3">
+        <input type="email" id="feedbackEmail" placeholder="Your email" required
+              class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+        <textarea id="feedbackMessage" rows="3" placeholder="Your message" required
+                  class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500"></textarea>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-500 transition">
+          Send Message
+        </button>
+      </form>
+
+      <!-- CTA -->
+      <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
+        <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
+        <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
+        <a href="#"
+           class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+          Contribute on GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-gray-700 text-center text-sm text-gray-500 py-4">
+      © 2025 FixMyCity | Built with 💙 for open collaboration
+    </div>
+  </footer>
+<script>
+  // Elements
+  const postalInput = document.getElementById("postalInput");
+  const goButton = document.getElementById("goButton");
+  const errorMsg = document.getElementById("errorMsg");
+
+  // Valid postal codes
+  const validPostalCodes = [
+    "500001", "500003", "506002", "503001", "505001","532001",
+    "507001", "504001", "520001", "522001", "530001","530015",
+    "533101", "533001", "517501", "524001", "520012", "515001"
+  ];
+
+  // Only allow numbers in input
+  postalInput.addEventListener("input", () => {
+    postalInput.value = postalInput.value.replace(/[^0-9]/g, "");
+  });
+
+  // Handle postal code button click
+  goButton.addEventListener("click", () => {
+    const value = postalInput.value.trim();
+    const postalRegex = /^[0-9]{6}$/; // strict 6-digit check
+
+    if (!postalRegex.test(value)) {
+      alert("Invalid format! Please enter a 6-digit postal code.");
+      return;
+    }
+
+    if (!validPostalCodes.includes(value)) {
+      alert("This postal code is not in our service area.");
+      return;
+    }
+
+    // Valid postal code → redirect
+    window.location.href = "reports.html?postal=" + value;
+  });
+
+  // Feedback form submission
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("feedbackEmail").value.trim();
+    const message = document.getElementById("feedbackMessage").value.trim();
+
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/send-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message })
+      });
+
+      const result = await response.text();
+      alert(result);
+      document.getElementById("feedbackForm").reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending feedback. Please try again later.");
+    }
+  });
+</script>
+<script>
+  AOS.init({
+    duration: 600, // Animation duration in ms
+    offset: 80,    // Trigger animations 100px before element enters viewport
+    easing: 'ease-in-out', // Smoother animation curve
+    once: false,    // Allow animations to replay when scrolling back up
+    mirror: true    // Animate elements out when scrolling back up
+  });
+</script>
+</body>
+</html>

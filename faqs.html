@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    nav {
+      display: flex !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      background-color: #dbeafe; /* Fallback for bg-blue-100 */
+      opacity: 1;
+      transform: none !important; /* Prevent sliding */
+      transition: opacity 0.3s ease-out; /* CSS fallback for AOS */
+    }
+    nav.hidden {
+      opacity: 0.5; /* Subtle fade for fallback */
+    }
+    .logo-fallback {
+      width: 40px;
+      height: 40px;
+      background-color: #3b82f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+    .nav-active {
+      font-weight: 600;
+      color: #1e40af; /* blue-800 */
+    }
+    nav ul li {
+      flex-shrink: 0; /* Prevent text shifting */
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+<!-- Navbar -->
+<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50" data-aos="fade">
+  <div class="flex items-center space-x-3">
+    <img src="logo.jpg" alt="Fix My City Logo" class="h-10 w-10 scale-125 object-contain transition-transform hover:scale-110" loading="eager" onerror="this.classList.add('logo-fallback'); this.src=''; this.textContent='FMC';">
+    <h1 class="text-2xl font-semibold tracking-tight">Fix My City</h1>
+  </div>
+  <ul class="flex space-x-6 text-base font-medium">
+    <li><a href="home.html" class="hover:text-blue-700 transition">Home</a></li>
+    <li><a href="home.html#report" class="hover:text-blue-700 transition">Report</a></li>
+    <li><a href="home.html#about" class="hover:text-blue-700 transition">Creators</a></li>
+    <li><a href="support.html" class="hover:text-blue-700 transition">Support</a></li>
+    <li><a href="status.html" class="hover:text-blue-700 transition">Status</a></li>
+    <li><a href="faqs.html" class="hover:text-blue-700 transition nav-active">FAQs</a></li>
+  </ul>
+</nav>
+
+<!-- FAQs Section -->
+<section id="faq" class="max-w-4xl mx-auto py-16 px-6" data-aos="fade-up">
+  <h2 class="text-4xl font-bold text-center mb-10 text-gray-800" data-aos="fade-up">Frequently Asked Questions</h2>
+  <div class="space-y-4">
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        What features are available on Fix My City? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        You can report civic issues, track their resolution, and collaborate with organizations and authorities.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        How do I report an issue? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Go to the "Report" section, enter location details, select the issue type, and submit.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        How can I track my report status? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Recent reports are shown on the homepage. You can also receive updates when an issue is resolved.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Can I upload photos while reporting? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Yes, you can upload images of the problem for better visibility and faster action.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Who can see my reports? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Reports are visible to relevant municipal authorities and, if shared publicly, to other citizens for transparency.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Do I need to create an account to report an issue?
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        No, you can submit issues without an account. However, creating one helps track your reports more easily.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Can authorities respond directly through Fix My City?
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Yes, municipal officials can update the status of your report and provide feedback directly on the platform.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Is my personal information safe?
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Absolutely. Your personal details are kept private and only necessary information is shared with authorities.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Can I report issues from mobile devices?
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Yes, Fix My City is mobile-friendly, and you can report issues easily from your smartphone or tablet.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Is Fix My City free to use? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Yes, the platform is completely free for all citizens to report and track issues.
+      </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg shadow" data-aos="fade-up">
+      <button class="w-full text-left font-medium text-lg flex justify-between items-center faq-btn" aria-expanded="false">
+        Can I suggest improvements to the platform? 
+        <span class="text-xl">+</span>
+      </button>
+      <div class="hidden mt-2 text-gray-600 faq-content">
+        Absolutely! You can contribute via GitHub or submit suggestions through the contact form.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">FixMyCity</h4>
+      <p class="text-sm leading-relaxed">
+        Open-source platform for mapping and reporting city issues, fostering collaboration between citizens, councils, and developers.
+      </p>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="home.html#report" class="hover:text-blue-400">Report a Problem</a></li>
+        <li><a href="home.html#about" class="hover:text-blue-400">About</a></li>
+        <li><a href="support.html" class="hover:text-blue-400">Support</a></li>
+        <li><a href="faqs.html" class="hover:text-blue-400">FAQs</a></li>
+        <li><a href="status.html" class="hover:text-blue-400">Status</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Need Help?</h4>
+      <form id="feedbackForm" class="space-y-3">
+        <input type="email" id="feedbackEmail" placeholder="Your email" required
+               class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+        <textarea id="feedbackMessage" rows="3" placeholder="Your message" required
+                  class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500"></textarea>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-500 transition">
+          Send Message
+        </button>
+      </form>
+    </div>
+    <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
+      <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
+      <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
+      <a href="#"
+         class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+        Contribute on GitHub
+      </a>
+    </div>
+  </div>
+  <div class="border-t border-gray-700 text-center text-sm text-gray-500 py-4">
+    © 2025 FixMyCity | Built with 💙 for open collaboration
+  </div>
+</footer>
+
+<script>
+  // FAQ Toggle with accessibility
+  document.querySelectorAll(".faq-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const content = btn.nextElementSibling;
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", !expanded);
+      content.classList.toggle("hidden");
+      btn.querySelector("span").textContent = expanded ? "+" : "-";
+    });
+  });
+
+  // Feedback form submission
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const email = document.getElementById("feedbackEmail").value.trim();
+    const message = document.getElementById("feedbackMessage").value.trim();
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3000/send-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message })
+      });
+      const result = await response.text();
+      alert(result);
+      document.getElementById("feedbackForm").reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending feedback. Please try again later.");
+    }
+  });
+
+  // Initialize AOS with error handling
+  window.addEventListener("load", () => {
+    console.log("Page loaded, checking AOS...");
+    if (typeof AOS !== "undefined") {
+      console.log("AOS initialized");
+      AOS.init({
+        duration: 300,
+        offset: 50,
+        easing: "ease-out",
+        once: false,
+        mirror: true
+      });
+    } else {
+      console.warn("AOS library failed to load. Using CSS fallback for navbar.");
+      const nav = document.querySelector("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("hidden");
+        } else {
+          nav.classList.remove("hidden");
+        }
+      });
+    }
+    console.log("Navbar check: ", document.querySelector("nav") ? "Visible" : "Not found");
+    console.log("Navbar position: ", document.querySelector("nav")?.getBoundingClientRect().top);
+  });
+</script>
+</body>
+</html>

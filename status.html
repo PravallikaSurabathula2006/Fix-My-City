@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    nav {
+      display: flex !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      background-color: #dbeafe; /* Fallback for bg-blue-100 */
+      opacity: 1;
+      transform: none !important; /* Prevent sliding */
+      transition: opacity 0.3s ease-out; /* CSS fallback for AOS */
+    }
+    nav.hidden {
+      opacity: 0.5; /* Subtle fade for fallback */
+    }
+    .logo-fallback {
+      width: 40px;
+      height: 40px;
+      background-color: #3b82f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+    .nav-active {
+      font-weight: 600;
+      color: #1e40af; /* blue-800 */
+    }
+    nav ul li {
+      flex-shrink: 0; /* Prevent text shifting */
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans">
+<!-- Navbar -->
+<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50" data-aos="fade">
+  <div class="flex items-center space-x-3">
+    <img src="logo.jpg" alt="Fix My City Logo" class="h-10 w-10 scale-125 object-contain transition-transform hover:scale-110" loading="eager" onerror="this.classList.add('logo-fallback'); this.src=''; this.textContent='FMC';">
+    <h1 class="text-2xl font-semibold tracking-tight">Fix My City</h1>
+  </div>
+  <ul class="flex space-x-6 text-base font-medium">
+    <li><a href="home.html" class="hover:text-blue-700 transition">Home</a></li>
+    <li><a href="home.html#report" class="hover:text-blue-700 transition">Report</a></li>
+    <li><a href="home.html#about" class="hover:text-blue-700 transition">Creators</a></li>
+    <li><a href="support.html" class="hover:text-blue-700 transition">Support</a></li>
+    <li><a href="status.html" class="hover:text-blue-700 transition nav-active">Status</a></li>
+    <li><a href="faqs.html" class="hover:text-blue-700 transition">FAQs</a></li>
+  </ul>
+</nav>
+
+<!-- Status Section -->
+<section id="status" class="bg-gradient-to-b from-blue-100 to-blue-200 py-16 px-6" data-aos="fade-up">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold mb-4 text-gray-900" data-aos="fade-up">Track Your Reported Issues</h2>
+    <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto" data-aos="fade-up">
+      Stay updated with the progress of your reported issues. Statuses refresh automatically every 30 seconds.
+    </p>
+    <button id="refreshButton" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-500 transition font-semibold shadow-md" data-aos="fade-up">
+      Refresh Now
+    </button>
+    <div id="reportsList" class="grid md:grid-cols-2 gap-8 mt-12" data-aos="fade-up">
+      <!-- Reports will be dynamically loaded here -->
+    </div>
+  </div>
+</section>
+
+<!-- Status Legend -->
+<section class="bg-white py-16 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-bold text-center mb-12 text-gray-900" data-aos="fade-up">Status Legend</h3>
+  <div class="grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto" data-aos="fade-up">
+    <div class="bg-yellow-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-yellow-400"></div>
+      <h4 class="font-bold text-yellow-700 text-lg">Delivered</h4>
+      <p class="text-sm text-gray-600">Your report has been received by our system.</p>
+    </div>
+    <div class="bg-blue-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-blue-500"></div>
+      <h4 class="font-bold text-blue-700 text-lg">Message Sent</h4>
+      <p class="text-sm text-gray-600">Forwarded to the relevant authorities.</p>
+    </div>
+    <div class="bg-purple-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-purple-500"></div>
+      <h4 class="font-bold text-purple-700 text-lg">Authorities Accepted</h4>
+      <p class="text-sm text-gray-600">Authorities acknowledged the issue.</p>
+    </div>
+    <div class="bg-green-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="w-6 h-6 mx-auto mb-3 rounded-full bg-green-500"></div>
+      <h4 class="font-bold text-green-700 text-lg">Problem Solved</h4>
+      <p class="text-sm text-gray-600">The issue has been resolved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 mt-12" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">FixMyCity</h4>
+      <p class="text-sm leading-relaxed">
+        Open-source platform for mapping and reporting city issues, fostering collaboration between citizens, councils, and developers.
+      </p>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="home.html#report" class="hover:text-blue-400">Report a Problem</a></li>
+        <li><a href="home.html#about" class="hover:text-blue-400">About</a></li>
+        <li><a href="support.html" class="hover:text-blue-400">Support</a></li>
+        <li><a href="faqs.html" class="hover:text-blue-400">FAQs</a></li>
+        <li><a href="status.html" class="hover:text-blue-400">Status</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Need Help?</h4>
+      <form id="feedbackForm" class="space-y-3">
+        <input type="email" id="feedbackEmail" placeholder="Your email" required
+               class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+        <textarea id="feedbackMessage" rows="3" placeholder="Your message" required
+                  class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500"></textarea>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-500 transition">
+          Send Message
+        </button>
+      </form>
+    </div>
+    <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
+      <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
+      <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
+      <a href="#"
+         class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+        Contribute on GitHub
+      </a>
+    </div>
+  </div>
+  <div class="border-t border-gray-700 text-center text-sm text-gray-500 py-4">
+    © 2025 FixMyCity | Built with 💙 for open collaboration
+  </div>
+</footer>
+
+<!-- JavaScript for Real-Time Updates and AOS -->
+<script>
+  // Sample Reports
+  const sampleReports = [
+    { id: 1, description: "Pothole near Central Park (Postal: 12345)", date: "August 20, 2025", status: "Delivered" },
+    { id: 2, description: "Broken Streetlight at Oak Street (Postal: 67890)", date: "August 19, 2025", status: "Message Sent" },
+    { id: 3, description: "Garbage Bin — Market Road (Postal: 11223)", date: "August 18, 2025", status: "Authorities Accepted" },
+    { id: 4, description: "Water leakage near School Lane (Postal: 44556)", date: "August 17, 2025", status: "Problem Solved" }
+  ];
+
+  function renderReports(reports) {
+    const reportsList = document.getElementById("reportsList");
+    reportsList.innerHTML = "";
+    reports.forEach(report => {
+      let statusColor = "";
+      switch (report.status) {
+        case "Delivered": statusColor = "bg-yellow-200 text-yellow-800"; break;
+        case "Message Sent": statusColor = "bg-blue-200 text-blue-800"; break;
+        case "Authorities Accepted": statusColor = "bg-purple-200 text-purple-800"; break;
+        case "Problem Solved": statusColor = "bg-green-200 text-green-800"; break;
+      }
+      const card = `
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition" data-aos="fade-up">
+          <h3 class="text-xl font-semibold mb-2 text-gray-800">${report.description}</h3>
+          <p class="text-sm text-gray-500 mb-4">Reported on: ${report.date}</p>
+          <span class="${statusColor} px-4 py-2 rounded-full font-medium">${report.status}</span>
+        </div>
+      `;
+      reportsList.innerHTML += card;
+    });
+  }
+
+  function fetchUpdates() {
+    sampleReports.forEach(report => {
+      if (Math.random() > 0.7) {
+        switch (report.status) {
+          case "Delivered": report.status = "Message Sent"; break;
+          case "Message Sent": report.status = "Authorities Accepted"; break;
+          case "Authorities Accepted": report.status = "Problem Solved"; break;
+        }
+      }
+    });
+    renderReports(sampleReports);
+  }
+
+  // Feedback Form Submission
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const email = document.getElementById("feedbackEmail").value.trim();
+    const message = document.getElementById("feedbackMessage").value.trim();
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3000/send-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message })
+      });
+      const result = await response.text();
+      alert(result);
+      document.getElementById("feedbackForm").reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending feedback. Please try again later.");
+    }
+  });
+
+  // Initialize AOS and Render Reports
+  window.addEventListener("load", () => {
+    console.log("Page loaded, checking AOS...");
+    if (typeof AOS !== "undefined") {
+      console.log("AOS initialized");
+      AOS.init({
+        duration: 300,
+        offset: 50,
+        easing: "ease-out",
+        once: false,
+        mirror: true
+      });
+    } else {
+      console.warn("AOS library failed to load. Using CSS fallback for navbar.");
+      const nav = document.querySelector("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("hidden");
+        } else {
+          nav.classList.remove("hidden");
+        }
+      });
+    }
+    console.log("Navbar check: ", document.querySelector("nav") ? "Visible" : "Not found");
+    console.log("Navbar position: ", document.querySelector("nav")?.getBoundingClientRect().top);
+    renderReports(sampleReports);
+  });
+
+  document.getElementById("refreshButton").addEventListener("click", fetchUpdates);
+  setInterval(fetchUpdates, 30000);
+</script>
+</body>
+</html>

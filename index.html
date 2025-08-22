@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .bg-animated {
+      background-size: cover;
+      background-position: center;
+    }
+    .error-message.active {
+      display: block;
+    }
+    .navbar {
+      background-image: url("bg.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .navbar-text {
+      color: black;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    @media (prefers-contrast: high) {
+      .navbar-text {
+        color: black;
+        text-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-animated" 
+      style="background-image: url('bg.jpg');">
+
+  <!-- Navbar -->
+  <nav class="navbar text-black px-6 py- flex justify-between items-center shadow-md sticky top-0 z-75">
+    <div class="flex items-center space-x-5">
+      <img src="logo.jpg" alt="SmartCity Logo" 
+           class="h-10 w-10 scale-125 object-contain transition-transform duration-300 hover:scale-110" 
+           onerror="this.src='https://via.placeholder.com/40';">
+      <h1 class="text-2xl font-semibold tracking-tight navbar-text">Fix My City</h1>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex justify-center items-center flex-1">
+    <div class="glass-card w-full max-w-md p-6 rounded-xl">
+      <form id="userForm" class="space-y-4">
+        <h2 class="text-2xl font-bold text-black text-center">User Login</h2>
+
+        <!-- Name -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Full Name</label>
+          <input id="fullName" type="text" placeholder="Enter your name" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+          <p class="text-red-400 text-xs mt-1 hidden error-message">Please enter your full name.</p>
+        </div>
+
+        <!-- Age -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Age</label>
+          <input id="ageInput" type="number" placeholder="Enter your age (16+)" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+          <p class="text-red-400 text-xs mt-1 hidden error-message">Age must be at least 16 years.</p>
+        </div>
+
+        <!-- City -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">City</label>
+          <input id="city" type="text" placeholder="Enter your city" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+          <p class="text-red-400 text-xs mt-1 hidden error-message">Please enter a valid city.</p>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Phone Number</label>
+          <input id="phoneNumber" type="tel" placeholder="Enter your phone number" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+          <p class="text-red-400 text-xs mt-1 hidden error-message">Please enter a valid 10-digit phone number.</p>
+        </div>
+
+        <!-- Postal Code -->
+        <div class="flex flex-col">
+          <label class="text-sm font-medium text-black mb-1">Postal Code</label>
+          <input id="postalCode" type="text" placeholder="Enter your postal code" class="w-full border border-black/30 rounded-lg px-3 py-2 bg-transparent text-black placeholder-black/50 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200" required>
+          <p class="text-red-400 text-xs mt-1 hidden error-message">Please enter a valid 6-digit postal code.</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 outline-none transition duration-200 flex items-center justify-center">
+          <span>Login</span>
+          <svg class="hidden w-5 h-5 ml-2 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden transition-opacity duration-300">
+    <p id="toastMessage"></p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/30 text-center text-sm text-black/80 py-4">
+    © 2025 FixMyCity | Built with 💙 for open collaboration
+  </footer>
+
+  <!-- JavaScript -->
+<script>
+  const form = document.getElementById('userForm');
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toastMessage');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value.trim();
+    const age = document.getElementById('ageInput').value;
+    const city = document.getElementById('city').value.trim();
+    const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    const postalCode = document.getElementById('postalCode').value.trim();
+
+    // Reset error messages
+    document.querySelectorAll('.error-message').forEach(msg => msg.classList.remove('active'));
+
+    let isValid = true;
+
+    // Validation
+    if (!fullName) {
+      showError('fullName', 'Please enter your full name.');
+      isValid = false;
+    }
+    if (!age || age < 16) {
+      showError('ageInput', 'Age must be at least 16 years.');
+      isValid = false;
+    }
+    if (!city) {
+      showError('city', 'Please enter a valid city.');
+      isValid = false;
+    }
+    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
+      showError('phoneNumber', 'Please enter a valid 10-digit phone number.');
+      isValid = false;
+    }
+    if (!postalCode || !/^\d{6}$/.test(postalCode)) {
+      showError('postalCode', 'Please enter a valid 6-digit postal code.');
+      isValid = false;
+    }
+
+    if (isValid) {
+      showToast('Login successful!');
+      form.reset();
+
+      // Redirect after 1.5s (toast visible for a moment)
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 1500);
+    }
+  });
+
+  function showError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const error = input.nextElementSibling;
+    error.textContent = message;
+    error.classList.add('active');
+  }
+
+  function showToast(message) {
+    toastMessage.textContent = message;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 1000);
+  }
+</script>
+
+</body>
+</html>

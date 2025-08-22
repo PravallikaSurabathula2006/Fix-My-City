@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - Fix My City</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    nav {
+      display: flex !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      background-color: #dbeafe; /* Fallback for bg-blue-100 */
+      opacity: 1;
+      transition: opacity 0.3s ease-out; /* CSS fallback for AOS */
+    }
+    nav.hidden {
+      opacity: 0.5; /* Subtle fade for fallback */
+    }
+    .logo-fallback {
+      width: 40px;
+      height: 40px;
+      background-color: #3b82f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+    .nav-active {
+      font-weight: 600;
+      color: #1e40af; /* blue-800 */
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+<!-- Navbar -->
+<nav class="bg-blue-100 text-black px-6 py-2 flex justify-between items-center shadow-md sticky top-0 z-50" data-aos="fade-down">
+  <div class="flex items-center space-x-3">
+    <img src="logo.jpg" alt="Fix My City Logo" class="h-10 w-10 scale-125 object-contain transition-transform hover:scale-110" loading="eager" onerror="this.classList.add('logo-fallback'); this.src=''; this.textContent='FMC';">
+    <h1 class="text-2xl font-semibold tracking-tight">Fix My City</h1>
+  </div>
+  <ul class="flex space-x-6 text-base font-medium">
+    <li><a href="home.html" class="hover:text-blue-700 transition">Home</a></li>
+    <li><a href="home.html#report" class="hover:text-blue-700 transition">Report</a></li>
+    <li><a href="home.html#about" class="hover:text-blue-700 transition">Creators</a></li>
+    <li><a href="support.html" class="hover:text-blue-700 transition nav-active">Support</a></li>
+    <li><a href="status.html" class="hover:text-blue-700 transition">Status</a></li>
+    <li><a href="faqs.html" class="hover:text-blue-700 transition">FAQs</a></li>
+  </ul>
+</nav>
+
+<!-- Support Section -->
+<section class="max-w-3xl mx-auto py-16 px-6" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-gray-800 text-center" data-aos="fade-up">Support</h2>
+  <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center" data-aos="fade-up">
+    Urban citizens face persistent challenges such as potholes, overflowing garbage bins, malfunctioning streetlights, and water leakages.
+    Currently, there is no centralized and user-friendly platform to report, track, and resolve these civic issues in real time.
+    This results in delays, lack of transparency, and poor communication between citizens and authorities, ultimately reducing the overall quality of urban life.
+  </p>
+
+  <form action="http://localhost:3000/submit-issue" method="POST" class="bg-white p-8 rounded-lg shadow-lg space-y-5" data-aos="fade-up">
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Your Name</label>
+      <input type="text" name="name" placeholder="Enter your name"
+             class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
+    </div>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Email</label>
+      <input type="email" name="email" placeholder="Enter your email"
+             class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
+    </div>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Type of Issue</label>
+      <select name="issue" class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg">
+        <option>Pothole</option>
+        <option>Garbage Overflow</option>
+        <option>Broken Streetlight</option>
+        <option>Poor drainage/flooding</option>
+        <option>Delay in approvals or documents</option>
+        <option>Mosquito breeding due to stagnant water</option>
+        <option>Broken Public Toilets</option>
+        <option>Damaged Roads</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Description</label>
+      <textarea name="description" rows="4" placeholder="Describe your problem"
+                class="w-full px-4 py-3 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none text-lg"></textarea>
+    </div>
+    <button type="submit"
+            class="bg-blue-600 text-white px-6 py-3 rounded-tl-lg rounded-br-lg font-semibold hover:bg-blue-500 transition transform hover:scale-105 shadow-md w-full">
+      Submit
+    </button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 mt-16" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">FixMyCity</h4>
+      <p class="text-sm leading-relaxed">
+        Open-source platform for mapping and reporting city issues, fostering collaboration between citizens, councils, and developers.
+      </p>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="home.html#report" class="hover:text-blue-400">Report a Problem</a></li>
+        <li><a href="home.html#about" class="hover:text-blue-400">About</a></li>
+        <li><a href="support.html" class="hover:text-blue-400">Support</a></li>
+        <li><a href="faqs.html" class="hover:text-blue-400">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold text-white mb-3">Need Help?</h4>
+      <form id="feedbackForm" class="space-y-3">
+        <input type="email" id="feedbackEmail" placeholder="Your email" required
+               class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+        <textarea id="feedbackMessage" rows="3" placeholder="Your message" required
+                  class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm text-gray-200 focus:outline-none focus:border-blue-500"></textarea>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-500 transition">
+          Send Message
+        </button>
+      </form>
+    </div>
+    <div class="bg-gray-800 p-5 rounded-lg shadow flex flex-col">
+      <h4 class="text-lg font-bold text-white mb-2">We are open-source 💙</h4>
+      <p class="text-sm mb-4">Collaborate with us to build smarter, safer, and more connected cities.</p>
+      <a href="#"
+         class="mt-auto inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-500 transition">
+        Contribute on GitHub
+      </a>
+    </div>
+  </div>
+  <div class="border-t border-gray-700 text-center text-sm text-gray-500 py-4">
+    © 2025 FixMyCity | Built with 💙 for open collaboration
+  </div>
+</footer>
+
+<!-- Chatbot Widget -->
+<div id="chatbot" class="fixed bottom-16 right-5 w-80 max-h-[500px] bg-white shadow-2xl rounded-xl flex flex-col transition-all duration-300 hidden z-50">
+  <div class="bg-blue-600 text-white p-4 rounded-t-xl flex justify-between items-center">
+    <span class="font-semibold text-lg">FixMyCity AI Support</span>
+    <button onclick="toggleChatbot()" class="text-white hover:text-gray-200 focus:outline-none">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div id="chatMessages" class="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3 text-sm">
+    <div class="flex justify-start">
+      <div class="bg-blue-100 text-gray-800 p-3 rounded-lg max-w-[80%]">
+        Hi! I'm here to help with reporting civic issues or any questions about FixMyCity. What's on your mind?
+      </div>
+    </div>
+  </div>
+  <div id="typingIndicator" class="hidden p-3 text-gray-500 text-sm">
+    <span>AI is typing...</span>
+  </div>
+  <div class="p-3 border-t border-gray-200 bg-white flex gap-2">
+    <input type="text" id="userMessage" placeholder="Ask about reporting issues..." 
+           class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+           onkeypress="if(event.key === 'Enter') sendMessage()">
+    <button onclick="sendMessage()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition focus:outline-none">Send</button>
+  </div>
+</div>
+<button id="chatToggle" onclick="toggleChatbot()" class="fixed bottom-5 right-5 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-500 transition z-50">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+  </svg>
+</button>
+
+<script>
+  // Toggle Chatbot
+  function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    const toggleBtn = document.getElementById('chatToggle');
+    chatbot.classList.toggle('hidden');
+    toggleBtn.classList.toggle('hidden');
+  }
+
+  // Chatbot Send Message
+  async function sendMessage() {
+    const input = document.getElementById('userMessage');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const chat = document.getElementById('chatMessages');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    chat.innerHTML += `
+      <div class="flex justify-end">
+        <div class="bg-blue-600 text-white p-3 rounded-lg max-w-[80%]">${msg}</div>
+      </div>
+    `;
+    chat.scrollTop = chat.scrollHeight;
+    input.value = '';
+
+    typingIndicator.classList.remove('hidden');
+
+    try {
+      const response = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await response.json();
+      typingIndicator.classList.add('hidden');
+      chat.innerHTML += `
+        <div class="flex justify-start">
+          <div class="bg-blue-100 text-gray-800 p-3 rounded-lg max-w-[80%]">${data.reply}</div>
+        </div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+    } catch (error) {
+      typingIndicator.classList.add('hidden');
+      chat.innerHTML += `
+        <div class="flex justify-start">
+          <div class="bg-red-100 text-red-600 p-3 rounded-lg max-w-[80%]">Error connecting to chatbot</div>
+        </div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  }
+
+  // Feedback Form Submission
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const email = document.getElementById("feedbackEmail").value.trim();
+    const message = document.getElementById("feedbackMessage").value.trim();
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3000/send-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message })
+      });
+      const result = await response.text();
+      alert(result);
+      document.getElementById("feedbackForm").reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending feedback. Please try again later.");
+    }
+  });
+
+  // Initialize AOS with error handling
+  window.addEventListener("load", () => {
+    console.log("Page loaded, checking AOS...");
+    if (typeof AOS !== "undefined") {
+      console.log("AOS initialized");
+      AOS.init({
+        duration: 300,
+        offset: 50,
+        easing: "ease-out",
+        once: false,
+        mirror: true
+      });
+    } else {
+      console.warn("AOS library failed to load. Using CSS fallback for navbar.");
+      const nav = document.querySelector("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("hidden");
+        } else {
+          nav.classList.remove("hidden");
+        }
+      });
+    }
+    console.log("Navbar check: ", document.querySelector("nav") ? "Visible" : "Not found");
+  });
+</script>
+</body>
+</html>
