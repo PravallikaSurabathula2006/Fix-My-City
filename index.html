@@ -117,10 +117,19 @@
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toastMessage');
 
+  // Fixed allowed user
+  const allowedUser = {
+    fullName: "Pravallika",
+    age: 19,
+    city: "Vijayawada",
+    phoneNumber: "7993744403",
+    postalCode: "520012"
+  };
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const fullName = document.getElementById('fullName').value.trim();
-    const age = document.getElementById('ageInput').value;
+    const age = parseInt(document.getElementById('ageInput').value.trim());
     const city = document.getElementById('city').value.trim();
     const phoneNumber = document.getElementById('phoneNumber').value.trim();
     const postalCode = document.getElementById('postalCode').value.trim();
@@ -128,38 +137,22 @@
     // Reset error messages
     document.querySelectorAll('.error-message').forEach(msg => msg.classList.remove('active'));
 
-    let isValid = true;
-
-    // Validation
-    if (!fullName) {
-      showError('fullName', 'Please enter your full name.');
-      isValid = false;
-    }
-    if (!age || age < 16) {
-      showError('ageInput', 'Age must be at least 16 years.');
-      isValid = false;
-    }
-    if (!city) {
-      showError('city', 'Please enter a valid city.');
-      isValid = false;
-    }
-    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
-      showError('phoneNumber', 'Please enter a valid 10-digit phone number.');
-      isValid = false;
-    }
-    if (!postalCode || !/^\d{6}$/.test(postalCode)) {
-      showError('postalCode', 'Please enter a valid 6-digit postal code.');
-      isValid = false;
-    }
-
-    if (isValid) {
+    // Restriction check
+    if (
+      fullName === allowedUser.fullName &&
+      age === allowedUser.age &&
+      city.toLowerCase() === allowedUser.city.toLowerCase() &&
+      phoneNumber === allowedUser.phoneNumber &&
+      postalCode === allowedUser.postalCode
+    ) {
       showToast('Login successful!');
       form.reset();
 
-      // Redirect after 1.5s (toast visible for a moment)
       setTimeout(() => {
         window.location.href = "home.html";
       }, 1500);
+    } else {
+      showToast('❌ Invalid user details. Access denied.');
     }
   });
 
@@ -173,9 +166,10 @@
   function showToast(message) {
     toastMessage.textContent = message;
     toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 1000);
+    setTimeout(() => toast.classList.add('hidden'), 1500);
   }
 </script>
+
 
 </body>
 </html>
